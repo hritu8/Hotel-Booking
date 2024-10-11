@@ -1,3 +1,4 @@
+// CheckForm.jsx
 import React, { useEffect, useRef, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import Adults from "./Adults";
@@ -5,7 +6,7 @@ import CheckIn from "./CheckIn";
 import CheckOut from "./CheckOut";
 import Kids from "./Kids";
 
-const CheckForm = () => {
+const CheckForm = ({ customLayout = false }) => {
   const [checkInDate, setCheckInDate] = useState(null);
   const [isCheckInCalendarOpen, setIsCheckInCalendarOpen] = useState(false);
   const [checkOutDate, setCheckOutDate] = useState(null);
@@ -43,7 +44,13 @@ const CheckForm = () => {
 
   return (
     <div className="bg-white p-6 mt-8 shadow-lg rounded-lg mx-auto w-full max-w-4xl">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div
+        className={`grid gap-4 ${
+          customLayout
+            ? "grid-cols-1"
+            : "grid-cols-1 md:grid-cols-2 lg:grid-cols-5"
+        }`}
+      >
         {/* Check In */}
         <CheckIn
           checkInDate={checkInDate}
